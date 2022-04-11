@@ -5,11 +5,8 @@ import {app} from "../../app";
 it('response with details about the current user', async ()=>{
     const authResponse = await request(app)
         .post('/api/users/signup')
-        .send({
-            email: 'test@test.com',
-            password: 'password'
-        })
-        .expect(201);
+        .send()
+        .expect(400);
 
     const cookie = authResponse.get('Set-Cookie');
 
