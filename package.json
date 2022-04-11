@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "@kurreyyh/common": "^1.0.10",
+    "supertest": "^6.2.2"
+  }
+}

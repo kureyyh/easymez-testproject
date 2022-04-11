@@ -1,0 +1,120 @@
+#apiVersion: skaffold/v2alpha3
+#kind: Config
+#deploy:
+#  kubectl:
+#    manifests:
+#      - ./infra/k8s/*
+#build:
+##  local:
+##    push: false
+#  googleCloudBuild:
+#    projectId: easymez
+#  artifacts:
+#    - image: us.gcr.io/easymez/auth
+#      context: auth
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "src/**/*.ts"
+#            dest: .
+#    - image: us.gcr.io/easymez/client
+#      context: client
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "**/*.js"
+#            dest: .
+#    - image: us.gcr.io/easymez/tickets
+#      context: tickets
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "**/*.js"
+#            dest: .
+#    - image: us.gcr.io/easymez/orders
+#      context: orders
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "**/*.js"
+#            dest: .
+#    - image: us.gcr.io/easymez/expiration
+#      context: expiration
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "**/*.js"
+#            dest: .
+#    - image: us.gcr.io/easymez/payments
+#      context: payments
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "**/*.js"
+#            dest: .
+
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: kursat38tr/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: kursat38tr/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: kursat38tr/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: kursat38tr/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: kursat38tr/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: kursat38tr/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+
