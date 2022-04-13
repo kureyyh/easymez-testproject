@@ -17,9 +17,9 @@ spec:
           image: kursat38tr/auth
           env:
             - name: MONGO_URI
-              value: "mongodb://auth-mongo-srv:27017/auth"
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
-              valueFrom:
+              valueFrom:kursat38tr
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
