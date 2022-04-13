@@ -35,7 +35,7 @@
 #    - name: auth
 #      protocol: TCP
 #      port: 3000
-#      targetPort: 3000
+#      targetPort: 3000a
 
 apiVersion: apps/v1
 kind: Deployment
