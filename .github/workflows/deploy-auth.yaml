@@ -3,17 +3,18 @@ name: deploy-auth
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'auth/**'
+
 jobs:
   build:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd auth && docker build -t kursat38tr/auth .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: cd auth && docker build -t kursat38tr/auth .
       - run: docker push kursat38tr/auth
