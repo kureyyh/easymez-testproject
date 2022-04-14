@@ -1,9 +1,9 @@
-name: deploy-manifests
+name: deploy-auth
 
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'infra/**'
 
