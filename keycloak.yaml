@@ -1,68 +1,45 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: keycloak
-  namespace: backend
-  labels:
-    app: keycloak
-spec:
-  ports:
-  - name: http
-    port: 8080
-    targetPort: 8080
-  selector:
-    app: keycloak
-  type: ClusterIP
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: keycloak
-  namespace: backend
-  labels:
-    app: keycloak
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: keycloak
-  template:
-    metadata:
-      labels:
-        app: keycloak
-    spec:
-      containers:
-      - name: keycloak
-        image: quay.io/keycloak/keycloak:10.0.0
-        env:
-        - name: KEYCLOAK_USER
-          value: "admin"
-        - name: KEYCLOAK_PASSWORD
-          value: "admin"
-        - name: PROXY_ADDRESS_FORWARDING
-          value: "true"
-        - name: DB_VENDOR
-          value: POSTGRES
-        - name: DB_ADDR
-          value: postgres
-        - name: DB_DATABASE
-          value: keycloak
-        - name: DB_USER
-          value: root
-        - name: DB_PASSWORD
-          value: password
-        - name : KEYCLOAK_HTTP_PORT
-          value : "80"
-        - name: KEYCLOAK_HTTPS_PORT
-          value: "443"
-        - name : KEYCLOAK_HOSTNAME
-          value : www.kursatdogan.nl
-        ports:
-        - name: http
-          containerPort: 8080
-        - name: https
-          containerPort: 8443
-        readinessProbe:
-          httpGet:
-            path: /auth/realms/master
-            port: 8080
+  apiVersion: "apps/v1"
+  kind: "Deployment"
+  metadata: 
+    name: "keycloak-development"
+    namespace: "development"
+  spec: 
+    selector: 
+      matchLabels: 
+        app: "keycloak-development"
+    replicas: 1
+    strategy: 
+      type: "RollingUpdate"
+      rollingUpdate: 
+        maxSurge: 1
+        maxUnavailable: 1
+    minReadySeconds: 5
+    template: 
+      metadata: 
+        labels: 
+          app: "keycloak-development"
+      spec: 
+        containers: 
+          - name: "keycloak-development"
+            image: "quay.io/keycloak/keycloak:8.0.2"
+            imagePullPolicy: "Always"
+            env: 
+              - name: "KEYCLOAK_USER"
+                value: "admin"
+              - name: "KEYCLOAK_PASSWORD"
+                value: "admin"
+              - name: "PROXY_ADDRESS_FORWARDING"
+                value: "true"
+              - name: "KEYCLOAK_FRONTEND_URL"
+                value: "https://www.kursatdogan.nl/auth/"
+              - name: "KEYCLOAK_ADMIN_URL"
+                value: "https://www.kursatdogan.nl/auth/realms/master/admin/"
+            ports: 
+              - name: "http"
+                containerPort: 8080
+              - name: "https"
+                containerPort: 8443
+            readinessProbe:
+               httpGet:
+                 path: "/auth/realms/master"
+                 port: 8080
