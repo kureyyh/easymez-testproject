@@ -2,7 +2,7 @@
   kind: "Service"
   metadata: 
     name: "keycloak-development-service"
-    namespace: "development"
+    namespace: "backend"
     labels: 
       app: "keycloak-development"
   spec: 
