@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: keycloak
-  namescape: backend
+  namespace: backend
   labels:
     app: keycloak
 spec:
@@ -17,7 +17,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keycloak
-  namescape: backend
+  namespace: backend
   labels:
     app: keycloak
 spec:
