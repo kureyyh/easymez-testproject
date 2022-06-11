@@ -41,6 +41,8 @@ spec:
           value: "admin"
         - name: KC_PROXY
           value: "edge"
+        - name: "KEYCLOAK_FRONTEND_URL"
+          value: "https://www.kursatdogan.nl/keycloak/"
         ports:
         - name: http
           containerPort: 8080
