@@ -39,8 +39,8 @@ spec:
           value: "admin"
         - name: KEYCLOAK_ADMIN_PASSWORD
           value: "admin"
-        - name: KC_PROXY
-          value: "edge"
+        - name: "PROXY_ADDRESS_FORWARDING"
+          value: "true"
         - name: "KEYCLOAK_FRONTEND_URL"
           value: "https://www.kursatdogan.nl/keycloak/"
         ports:
