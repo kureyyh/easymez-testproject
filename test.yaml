@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keycloak-development
-  namespace: development
+  namespace: backend
 spec:
   selector:
     matchLabels:
