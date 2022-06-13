@@ -32,8 +32,7 @@ spec:
     spec:
       containers:
       - name: keycloak
-        image: quay.io/keycloak/keycloak:18.0.0
-        args: ["start-dev"]
+        image: registry.digitalocean.com/easymez/keycloak
         env:
         - name: KEYCLOAK_ADMIN
           value: "admin"
