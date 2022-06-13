@@ -43,4 +43,3 @@ spec:
             httpGet:
               path: /auth/realms/master
               port: 8080
-              initialDelaySeconds: 120
